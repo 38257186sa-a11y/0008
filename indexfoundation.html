@@ -1,213 +1,68 @@
-<!doctype html>
-<!--
-  index_foundation.html
-  A foundational, production-ready HTML template for your UGC NET quiz website.
-  - Responsive, accessible header/navigation
-  - SEO + Open Graph + Twitter card meta
-  - PWA manifest + basic service-worker registration stub
-  - Linked external CSS (styl.css) and script (script.js) placeholders
-  - Skip link, ARIA attributes, progressive enhancement
-  - Areas: Home, Tests, Daily 15q (admin editable), Syllabus, About, Contact
-
-  How to use:
-  1. Save this file as index.html at your web root.
-  2. Add `styl.css` and `script.js` in the same folder (or update the links below).
-  3. Replace placeholders (favicon, theme-color, analytics id) with your values.
-  4. Optionally register the service worker file `sw.js` and manifest `site.webmanifest`.
--->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>UGC NET Political Science — Test Series</title>
-  <meta name="description" content="UGC NET Political Science — practice tests, daily 15-question paper template, advanced MCQs (Paper-2 & Paper-1). Responsive, accessible test platform." />
-  <link rel="canonical" href="https://yourdomain.example/" />
-
-  <!-- Open Graph / Social cards -->
-  <meta property="og:title" content="UGC NET Political Science — Test Series" />
-  <meta property="og:description" content="Practice tests, daily 15-question template, advanced MCQs and Paper-1 practice. Built for accessibility and performance." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourdomain.example/" />
-  <meta property="og:image" content="/assets/og-image.png" />
-
-  <!-- Twitter card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="UGC NET Political Science — Test Series" />
-  <meta name="twitter:description" content="Practice tests, daily 15-question template, advanced MCQs and Paper-1 practice." />
-  <meta name="twitter:image" content="/assets/twitter-image.png" />
-
-  <!-- Favicon & theme -->
-  <link rel="icon" href="/assets/favicon.ico" />
-  <meta name="theme-color" content="#0066cc" />
-
-  <!-- Progressive Web App manifest (optional) -->
-  <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- External CSS (create styl.css or change path) -->
-  <link rel="stylesheet" href="/styl.css" />
-
-  <!-- Minimal critical CSS to ensure layout stability while styl.css loads -->
-  <style>
-    :root{ --accent:#0066cc; --bg:#f7f9fc; --card:#fff; --muted:#5b6b7a; --radius:10px; }
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:#0b1726}
-    a{color:inherit}
-    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-    header{background:linear-gradient(135deg,var(--accent),#0077e6);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand h1{margin:0;font-size:18px}
-    .nav{margin-left:auto;display:flex;gap:8px;align-items:center}
-    .btn{background:#fff;color:var(--accent);padding:8px 10px;border-radius:8px;border:0;font-weight:700;cursor:pointer}
-    main{width:95%;max-width:1200px;margin:18px auto;padding:6px}
-    footer{padding:20px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--accent),#005bb5);margin-top:30px}
-    /* basic responsive nav */
-    .menu-toggle{display:none}
-    @media(max-width:880px){.nav{display:none}.menu-toggle{display:inline-flex;margin-left:auto}}
-  </style>
-
-  <!-- Basic structured data (Organization) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"EducationalOrganization",
-    "name":"UGC NET Political Science Test Series",
-    "url":"https://yourdomain.example/",
-    "logo":"https://yourdomain.example/assets/logo.png",
-    "sameAs":["https://twitter.com/yourhandle","https://facebook.com/yourpage"]
-  }
-  </script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGC NET Political Science Quiz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <a class="sr-only" href="#main">Skip to main content</a>
-
-  <header role="banner">
+<!-- Header -->
+<header>
     <div class="brand">
-      <div aria-hidden="true" style="width:44px;height:44px;border-radius:8px;background:#fff;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800">UGC</div>
-      <div>
-        <h1>UGC NET Political Science</h1>
-        <p style="margin:0;font-size:12px;opacity:.95">Practice tests • Daily 15Q template • Advanced MCQs</p>
-      </div>
+        <h1>UGC NET Political Science Quiz</h1>
+        <p>150 Paper-2 + 50 Paper-1 MCQs</p>
     </div>
-
-    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰</button>
-
-    <nav id="main-nav" class="nav" role="navigation" aria-label="Main menu">
-      <a class="btn" href="/">Home</a>
-      <a class="btn" href="/tests">Tests</a>
-      <a class="btn" href="/paper15.html">Daily 15Q</a>
-      <a class="btn" href="/syllabus.html">Syllabus</a>
-      <a class="btn" href="/about.html">About</a>
-      <a class="btn" href="/contact.html">Contact</a>
+    <button class="menu-toggle">☰ Menu</button>
+    <nav class="nav-links">
+        <a href="#" onclick="window.quizUI.expandAll()">Expand All</a>
+        <a href="#" onclick="window.quizUI.collapseAll()">Collapse All</a>
+        <a href="#" onclick="window.showResultsModal()">Show Results</a>
+        <a href="#" onclick="window.exportAnswersCSV()">Export CSV</a>
     </nav>
-  </header>
+</header>
 
-  <main id="main" role="main">
-    <!-- Hero / quick actions -->
-    <section aria-labelledby="hero-title" style="background:linear-gradient(180deg,rgba(0,102,204,0.06),transparent);border-radius:10px;padding:18px;margin-bottom:18px">
-      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between">
-        <div>
-          <h2 id="hero-title">Practice, Improve, Master — UGC NET Political Science</h2>
-          <p style="margin:6px 0;color:var(--muted)">Access the full 150-question advanced Paper-2 set, Paper-1 teaching & research aptitudes, and a daily editable 15-question template.</p>
-        </div>
-        <div style="display:flex;gap:10px;align-items:center">
-          <a class="btn" href="/tests">Start Test</a>
-          <a class="btn" href="/paper15.html">Today's 15Q</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features / quick links -->
-    <section aria-labelledby="features-title" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:18px">
-      <article style="background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)">
-        <h3 id="features-title">Structured Tests</h3>
-        <p class="muted">Full-length practice papers (150 Qs) with detailed explanations and timed mode.</p>
-      </article>
-
-      <article style="background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)">
-        <h3>Daily 15Q Template</h3>
-        <p class="muted">Easily update today's 15-question practice paper via an editable JSON file — ideal for daily drills.</p>
-      </article>
-
-      <article style="background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)">
-        <h3>Paper-1 Resources</h3>
-        <p class="muted">Research & Teaching Aptitude practice questions, methodology notes and reading lists.</p>
-      </article>
-
-      <article style="background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)">
-        <h3>Analytics & Progress</h3>
-        <p class="muted">Track practice history and performance over time (connect to server-side storage to persist results).</p>
-      </article>
-    </section>
-
-    <!-- Latest / quick feed -->
-    <section aria-labelledby="updates" style="margin-bottom:18px">
-      <h3 id="updates">Latest updates</h3>
-      <ul>
-        <li><strong>Daily 15Q:</strong> new template added — edit <code>/paper15.html</code> to update questions each day.</li>
-        <li><strong>Script:</strong> drop your `script.js` next to this file to render and run tests and timers.</li>
-        <li><strong>Deployment:</strong> ready to host on Netlify, Vercel, GitHub Pages or any static host.</li>
-      </ul>
-    </section>
-
-    <!-- Callout: Admin / editors -->
-    <section style="background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)">
-      <h3>Quick admin notes</h3>
-      <ol class="muted">
-        <li>To update daily questions, edit <code>/paper15.html</code> or replace the JSON file used by that page.</li>
-        <li>To add a new test set, create a JSON file like <code>questions-YYYYMMDD.json</code> and link it from the Tests page.</li>
-        <li>For persistent user scores, implement a server endpoint (POST /api/results) and modify <code>script.js</code> to send results.</li>
-      </ol>
-    </section>
-
-  </main>
-
-  <footer role="contentinfo">
-    <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:8px;align-items:center">
-      <div style="font-weight:700">UGC NET Political Science — Test Series</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.9)">Made for students — updated daily. © <span id="year"></span></div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.9)">Host on static hosting for fastest delivery.</div>
+<!-- Timer & Controls -->
+<div class="top-controls">
+    <div class="timer-card">
+        <div class="timer">Time: 00:00</div>
     </div>
-  </footer>
+    <div class="controls">
+        <button onclick="appTimer.start(3600)">Start 60min</button>
+        <button onclick="appTimer.pause()">Pause</button>
+        <button onclick="appTimer.resume()">Resume</button>
+        <button onclick="appTimer.stop()">Stop</button>
+    </div>
+</div>
 
-  <!-- Load site script (create script.js) -->
-  <script>
-    // small enhancements and progressive features
-    document.getElementById('year').textContent = new Date().getFullYear();
+<!-- Question Container -->
+<div class="container" id="question-container">
+    <!-- Questions will be rendered here by script.js -->
+</div>
 
-    // mobile menu toggle
-    (function(){
-      const btn = document.querySelector('.menu-toggle');
-      const nav = document.getElementById('main-nav');
-      if (!btn || !nav) return;
-      btn.addEventListener('click', ()=>{
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        nav.style.display = expanded ? '' : 'flex';
-        nav.style.flexDirection = expanded ? '' : 'column';
-      });
-    })();
+<!-- Modal for Results -->
+<div id="result-modal" class="modal-backdrop" style="display:none;">
+    <div class="modal">
+        <h2>Quiz Results</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="modal-answered">0</div>
+                <div class="stat-label">Answered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="modal-score">0</div>
+                <div class="stat-label">Correct</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="modal-total">0</div>
+                <div class="stat-label">Total Questions</div>
+            </div>
+        </div>
+        <button id="close-modal" onclick="document.getElementById('result-modal').style.display='none'">Close</button>
+    </div>
+</div>
 
-    // Service worker registration stub (PWA)
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(reg => {
-          // registration successful
-          console.log('SW registered:', reg.scope);
-        }).catch(err => {
-          // fail silently (non-critical)
-          console.warn('SW not registered', err);
-        });
-      });
-    }
-
-    // Analytics placeholder: replace with your analytics snippet (Google Analytics / Plausible / Fathom etc.)
-    // Example: window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'GA_MEASUREMENT_ID');
-  </script>
-
-  <!-- Primary site JS: keep script.js in the same folder to wire quiz UI. -->
-  <script src="/script.js" defer></script>
+<script src="script.js"></script>
 </body>
 </html>
