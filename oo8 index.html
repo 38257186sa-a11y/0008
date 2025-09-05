@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGC NET Political Science Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="brand">
+        <h1>UGC NET Political Science Quiz</h1>
+        <p>150 Paper-2 + 50 Paper-1 MCQs</p>
+    </div>
+    <button class="menu-toggle">☰ Menu</button>
+    <nav class="nav-links">
+        <a href="#" onclick="window.quizUI.expandAll()">Expand All</a>
+        <a href="#" onclick="window.quizUI.collapseAll()">Collapse All</a>
+        <a href="#" onclick="window.showResultsModal()">Show Results</a>
+        <a href="#" onclick="window.exportAnswersCSV()">Export CSV</a>
+    </nav>
+</header>
+
+<!-- Timer & Controls -->
+<div class="top-controls">
+    <div class="timer-card">
+        <div class="timer">Time: 00:00</div>
+    </div>
+    <div class="controls">
+        <button onclick="appTimer.start(3600)">Start 60min</button>
+        <button onclick="appTimer.pause()">Pause</button>
+        <button onclick="appTimer.resume()">Resume</button>
+        <button onclick="appTimer.stop()">Stop</button>
+    </div>
+</div>
+
+<!-- Question Container -->
+<div class="container" id="question-container">
+    <!-- Questions will render here -->
+</div>
+
+<!-- Modal for Results -->
+<div id="result-modal" class="modal-backdrop" style="display:none;">
+    <div class="modal">
+        <h2>Quiz Results</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="modal-answered">0</div>
+                <div class="stat-label">Answered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="modal-score">0</div>
+                <div class="stat-label">Correct</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="modal-total">0</div>
+                <div class="stat-label">Total Questions</div>
+            </div>
+        </div>
+        <button id="close-modal" onclick="document.getElementById('result-modal').style.display='none'">Close</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
