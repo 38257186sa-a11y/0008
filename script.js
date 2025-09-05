@@ -11,12 +11,13 @@
 */
 
 /* ------------------ QUESTION BANKS ------------------ */
-// Replace the following placeholders with full arrays
+// REPLACE the placeholders below with actual questions
+
 const mcqs2015 = [
   {
     id: 1,
-    question: "Who is conventionally referred to as the 'father of Political Science'?",
-    options: ["Plato","Aristotle","Machiavelli","Socrates"],
+    question: "Who is considered the father of Political Science?",
+    options: ["Plato", "Aristotle", "Machiavelli", "Socrates"],
     answer: 1,
     explanation: "Aristotle (384–322 BCE) systematically analyzed constitutions in Politics; his empirical approach established political inquiry."
   },
@@ -26,8 +27,13 @@ const mcqs2015 = [
 const paper1_50 = [
   {
     id: "P1-1",
-    question: "Which of the following best describes the principal aim of research methodology?",
-    options: ["Methods are the philosophical basis; methodology is just tools","Methodology concerns the logic and justification of procedures while methods are techniques","Methodology is identical to methods","Methodology refers only to data collection"],
+    question: "Which of the following best describes research methodology?",
+    options: [
+      "Methods are the philosophical basis; methodology is just tools",
+      "Methodology concerns the logic and justification of procedures while methods are techniques",
+      "Methodology is identical to methods",
+      "Methodology refers only to data collection"
+    ],
     answer: 1,
     explanation: "Methodology reflects the epistemological rationale; methods are operational techniques."
   },
@@ -35,16 +41,16 @@ const paper1_50 = [
 ];
 
 /* ------------------ DOM UTILITIES ------------------ */
-function qs(selector){return document.querySelector(selector);}
-function qsa(selector){return Array.from(document.querySelectorAll(selector));}
-function mk(tag, attrs={}, ...children){
-  const el=document.createElement(tag);
+function qs(selector) { return document.querySelector(selector); }
+function qsa(selector) { return Array.from(document.querySelectorAll(selector)); }
+function mk(tag, attrs={}, ...children) {
+  const el = document.createElement(tag);
   for(const k in attrs){
-    if(k==='class') el.className=attrs[k];
-    else if(k==='text') el.textContent=attrs[k];
+    if(k==='class') el.className = attrs[k];
+    else if(k==='text') el.textContent = attrs[k];
     else el.setAttribute(k, attrs[k]);
   }
-  children.forEach(c=>{
+  children.forEach(c => {
     if(typeof c==='string') el.appendChild(document.createTextNode(c));
     else if(c) el.appendChild(c);
   });
